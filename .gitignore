@@ -1,0 +1,5 @@
+# Local Dependancies
+node_modules
+
+# Log Files
+*.log
