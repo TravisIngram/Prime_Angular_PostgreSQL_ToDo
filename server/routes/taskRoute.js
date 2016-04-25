@@ -13,8 +13,9 @@ router.post('/', function(request, response) {
 			response.sendStatus(500);
 		} else {
 			var tasks = request.body.tasks;
+			var status = request.body.status;
 			var results = [];
-			var query = client.query('INSERT INTO task (tasks) VALUES ($1) RETURNING tasks', [tasks]);
+			var query = client.query('INSERT INTO task (tasks, status) VALUES ($1, $2) RETURNING tasks,status', [tasks, status]);
 
 			query.on('error', function(error) {
 				console.log(error);
