@@ -12,9 +12,9 @@ router.post('/', function(request, response) {
 			console.log(err);
 			response.sendStatus(500);
 		} else {
-			var task = request.body.task;
+			var tasks = request.body.tasks;
 			var results = [];
-			var query = client.query('INSERT INTO task (task) VALUES ($1) RETURNING task', [task]);
+			var query = client.query('INSERT INTO task (tasks) VALUES ($1) RETURNING tasks', [tasks]);
 
 			query.on('error', function(error) {
 				console.log(error);
