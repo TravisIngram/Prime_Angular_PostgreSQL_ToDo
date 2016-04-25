@@ -7,10 +7,10 @@ var connection = require('./models/dbConnection.js');
 
 var indexRoute = require('./routes/indexRoute.js');
 
-connection.initializeStatus();
-connection.initializeCategory();
+// connection.initializeStatus();
+// connection.initializeCategory();
 connection.initializeTask();
-connection.initializeUser();
+// connection.initializeUser();
 
 app.use(express.static('server/public'));
 app.use(bodyParser.json());
