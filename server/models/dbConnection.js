@@ -1,6 +1,6 @@
 var pg = require('pg');
 
-var connectionString = 'postgres::/localhost:5432/angularSQLToDo';
+var connectionString = 'postgres://localhost:5432/angularSQLToDo';
 
 function initializeStatus() {
 	pg.connect(connectionString, function(err, client, done) {
@@ -50,7 +50,7 @@ function initializeTask() {
 			console.log(err);
 			process.exit(1);
 		} else {
-			var query = client.query('CREATE TABLE IF NOT EXISTS task ("id" serial PRIMARY KEY, "task" text NOT NULL, "user_id" int FOREIGN KEY, "category_id" int FOREIGN KEY, "status_id" int FOREIGN KEY)');
+			var query = client.query('CREATE TABLE IF NOT EXISTS task ("id" serial PRIMARY KEY, "tasks" text NOT NULL, "user_id" int FOREIGN KEY, "category_id" int FOREIGN KEY, "status_id" int FOREIGN KEY)');
 
 			query.on('end', function() {
 				console.log('Successfully created schema.');
