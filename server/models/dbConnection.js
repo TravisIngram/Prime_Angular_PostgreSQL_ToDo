@@ -50,7 +50,8 @@ function initializeTask() {
 			console.log(err);
 			process.exit(1);
 		} else {
-			var query = client.query('CREATE TABLE IF NOT EXISTS task ("id" serial PRIMARY KEY, "tasks" text NOT NULL, "user_id" int FOREIGN KEY, "category_id" int FOREIGN KEY, "status_id" int FOREIGN KEY)');
+			var query = client.query('CREATE TABLE IF NOT EXISTS task ("id" serial PRIMARY KEY, "tasks" text NOT NULL, FOREIGN KEY "user_id" int REFERENCES user (id),' + 
+				' FOREIGN KEY "category_id" int REFERENCES category (id), FOREIGN KEY "status_id" int REFERENCES status (id))');
 
 			query.on('end', function() {
 				console.log('Successfully created schema.');
@@ -71,7 +72,8 @@ function initializeUser() {
 			console.log(err);
 			process.exit(1);
 		} else {
-			var query = client.query('CREATE TABLE IF NOT EXISTS user ("id" serial PRIMARY KEY, "username" varchar(25) NOT NULL, "task_id" int FOREIGN KEY, "category_id" int FOREIGN KEY, "status_id" int FOREIGN KEY)');
+			var query = client.query('CREATE TABLE IF NOT EXISTS user ("id" serial PRIMARY KEY, "username" varchar(25) NOT NULL, "task_id" int REFERENCES task (id),' +
+				' "category_id" int REFERENCES category (id), "status_id" int REFERENCES status (id))');
 
 			query.on('end', function() {
 				console.log('Successfully created schema.');
