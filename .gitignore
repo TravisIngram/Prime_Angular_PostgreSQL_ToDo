@@ -3,3 +3,7 @@ node_modules
 
 # Log Files
 *.log
+
+# Minified Assets
+/server/public/vendor/*
+/server/public/assets/scripts/*
